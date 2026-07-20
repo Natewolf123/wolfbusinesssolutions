@@ -22,11 +22,11 @@ mobile, and is easier to maintain.
   ships `<meta name="robots" content="noindex, nofollow">` on every page,
   which blocks search engines entirely. This rebuild removes that so the
   site can actually be found -- confirm that's intended before launch.
-- Images are currently referenced directly from the existing
-  `wolfbusinesssolutions.com` media library (same URLs as the live site) so
-  nothing breaks on day one. For best performance, download `/assets` from
-  the old site, convert to WebP, and serve them from this repo/CDN instead --
-  see "Next steps" below.
+- All images (logo, about-us photo, favicon) are now self-hosted under
+  `/assets`, converted to WebP (PNG kept for the favicon for broad
+  compatibility), and compressed. Nothing on this site loads from the old
+  `wolfbusinesssolutions.com` WordPress install anymore -- no images, CSS,
+  JS, fonts, or form assets.
 
 ## Forms
 
@@ -60,10 +60,13 @@ docs.
 ## Next steps / recommended follow-ups
 
 1. Hook up the two forms to a real backend.
-2. Download and self-host the images (logo, photos, decorative lines) instead
-   of hotlinking the old WordPress media library, and compress/convert them
-   to WebP for faster loads.
-3. Confirm the `robots.txt` / indexing change above is intentional.
-4. Swap in exact brand hex colors/fonts if you have brand guidelines --
+2. Confirm the `robots.txt` / indexing change above is intentional.
+3. Swap in exact brand hex colors/fonts if you have brand guidelines --
    this rebuild approximates the palette (navy + gold) since the original
    site's compiled CSS wasn't accessible for extraction.
+
+## Custom domain
+
+A `CNAME` file pointing at `wolfbusinesssolutions.com` is included so GitHub
+Pages knows to serve this repo on that domain once Pages is enabled and DNS
+is pointed at it (see the setup instructions provided separately).
