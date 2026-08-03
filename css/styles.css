@@ -26,8 +26,8 @@
   --shadow: 0 20px 45px rgba(15, 30, 60, 0.10);
   --shadow-soft: 0 8px 24px rgba(15, 30, 60, 0.08);
 
-  --section-pad: 72px;
-  --section-pad-sm: 40px;
+  --section-pad: 64px;
+  --section-pad-sm: 36px;
 }
 
 * { box-sizing: border-box; }
@@ -208,7 +208,7 @@ input:focus-visible {
    ========================================================================== */
 .hero {
   background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-white) 100%);
-  padding-block: 56px;
+  padding-block: 48px;
 }
 .hero-inner {
   display: grid;
@@ -252,8 +252,10 @@ input:focus-visible {
    Trust bar
    ========================================================================== */
 .trust-bar {
-  background: var(--color-navy);
-  padding-block: 20px;
+  background: linear-gradient(90deg, var(--color-navy) 0%, #0f3568 50%, var(--color-navy) 100%);
+  padding-block: 18px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .trust-bar-inner {
   display: flex;
@@ -433,12 +435,15 @@ input:focus-visible {
 .process-step:not(:last-child)::after {
   content: "";
   position: absolute;
-  top: 50%;
-  right: -18px;
-  width: 16px;
+  top: 38px;
+  right: -25px;
+  width: 26px;
   height: 2px;
-  background: var(--color-border);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
   display: none;
+}
+@media (min-width: 961px) {
+  .process-step:not(:last-child)::after { display: block; }
 }
 .process-number {
   display: inline-flex;
@@ -574,10 +579,24 @@ input:focus-visible {
    Quote banner
    ========================================================================== */
 .quote-banner {
-  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-primary) 100%);
+  position: relative;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(255,255,255,0.08) 0%, transparent 55%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 14px),
+    linear-gradient(135deg, var(--color-navy) 0%, var(--color-primary) 100%);
   color: var(--color-white);
-  padding-block: 56px;
+  padding-block: 48px;
   text-align: center;
+}
+.quote-banner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.7;
 }
 .quote-banner blockquote {
   margin: 0 0 18px;
@@ -612,9 +631,11 @@ input:focus-visible {
    Footer -- light, clean
    ========================================================================== */
 .site-footer {
-  background: var(--color-navy);
+  background:
+    radial-gradient(ellipse at 85% 0%, rgba(255,255,255,0.05) 0%, transparent 45%),
+    var(--color-navy);
   color: rgba(255,255,255,0.82);
-  padding-top: 56px;
+  padding-top: 36px;
 }
 .footer-inner {
   display: grid;
@@ -724,8 +745,8 @@ input:focus-visible {
   .service-card-body { padding: 8px 20px 20px; }
   .value-card { padding: 22px 20px; }
 
-  .quote-banner { padding-block: 40px; }
-  .site-footer { padding-top: 40px; }
+  .quote-banner { padding-block: 32px; }
+  .site-footer { padding-top: 28px; }
   .footer-inner { gap: 28px; padding-bottom: 28px; }
 }
 
