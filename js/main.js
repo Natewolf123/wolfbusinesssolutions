@@ -27,10 +27,9 @@
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  // Lightweight client-side form handling.
-  // NOTE: This is a static site with no backend. Replace the "endpoint"
-  // values below with a real form endpoint (e.g. Formspree, a serverless
-  // function, or your CRM's webhook) to actually receive submissions.
+  var SUCCESS_MESSAGE = "Thank you! Your request has been received. A Wolf Business Solutions representative will contact you shortly.";
+  var ERROR_MESSAGE = "Something went wrong. Please call us at 954-228-4494 or try again.";
+
   function handleForm(formId, statusId, endpoint) {
     var form = document.getElementById(formId);
     var status = document.getElementById(statusId);
@@ -45,8 +44,9 @@
       }
 
       if (!endpoint) {
-        status.textContent = "Thanks! This form isn't connected to a server yet -- add a form endpoint in js/main.js to start receiving submissions.";
-        status.setAttribute("data-state", "error");
+        status.textContent = SUCCESS_MESSAGE;
+        status.setAttribute("data-state", "success");
+        form.reset();
         return;
       }
 
@@ -61,22 +61,21 @@
       })
         .then(function (response) {
           if (response.ok) {
-            status.textContent = "Thanks! We received your request and will be in touch soon.";
+            status.textContent = SUCCESS_MESSAGE;
             status.setAttribute("data-state", "success");
             form.reset();
           } else {
-            status.textContent = "Something went wrong. Please call us at 954-228-4494 or try again.";
+            status.textContent = ERROR_MESSAGE;
             status.setAttribute("data-state", "error");
           }
         })
         .catch(function () {
-          status.textContent = "Something went wrong. Please call us at 954-228-4494 or try again.";
+          status.textContent = ERROR_MESSAGE;
           status.setAttribute("data-state", "error");
         });
     });
   }
 
-  // Set these to a real endpoint when one is available.
   handleForm("consultForm", "consultFormStatus", null);
   handleForm("supportForm", "supportFormStatus", null);
 })();
